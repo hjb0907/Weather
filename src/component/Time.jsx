@@ -55,7 +55,7 @@ class Snow {
     snowDiv.style.top = this.y + 'px';
     snowDiv.style.width = this.size + 'px';
     snowDiv.style.height = this.size + 'px';
-    snowDiv.style.backgroundColor = 'white';
+    snowDiv.style.backgroundColor = '#8eb2d087';
     snowDiv.style.filter = 'blur(5px)';
     snowDiv.style.borderRadius ='50%';
     snowDiv.style.animation = `blink ${this.time}s steps(5) infinite`;
