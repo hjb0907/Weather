@@ -1,0 +1,181 @@
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  font-family: 'S-CoreDream-3Light';
+}
+body {
+	line-height: 1;
+}
+*,table, td, tr, div, select, input[type="text"], input[type="password"], input, textarea, a{font-family: 'S-CoreDream-3Light';}
+
+.App {
+  font-family: 'S-CoreDream-3Light';
+  text-align: center;
+}
+
+.App{
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  max-width: 2560px;
+  min-width: 375px;
+  padding:100px 0;
+}
+
+.searchlocation{
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchlocation>input{
+  border: none;
+  padding: 10px 0 10px 5px;
+  border-radius: 5px;
+  width: 250px;
+}
+.searchlocation>button{
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  margin-left: 5px;
+  padding: 0 10px;
+}
+
+.weatherinfo{
+  background: rgba(255, 255, 255, .2);
+  border: 1px solid #fff;
+  border-radius: 10px;
+  width: 300px;
+  margin: 0 auto;
+  padding: 50px 0;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.weatherinfo h2{
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fff;
+  width: 80%;
+  margin: 0 auto 20px;
+}
+
+.weatherinfo h3{
+  line-height: 2.3rem;
+  font-size: 1.1rem;
+}
+
+.weatherbtn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.weatherbtn .btn{
+  width: calc(80%/8 - 5px);
+  margin-right: 5px;
+}
+.weatherbtn button{
+  width: 100%;
+  border: none;
+  background: #fff;
+  display: block;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: rgba(2,121,200,1);
+  font-family: 'S-CoreDream-3Light';
+  cursor: pointer;
+  word-break: break-word;
+}
+
+.time .star{
+  position: relative;
+  width: 8px;
+  height: 8px;
+  left: 1137px;
+  top: 485px;
+  background-color: #ffe658;
+  filter: blur(4px);
+  border-radius: 50%;
+  animation: blink 1s steps(5) infinite;
+}
+
+.time .snow{
+  position: relative;
+  width: 8px;
+  height: 8px;
+  left: 1137px;
+  top: 485px;
+  background-color: #ffffff;
+  filter: blur(5px);
+  animation: blink 1s steps(5) infinite;
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.time.raindrop {
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  background-color: rgba(6, 119, 163, 0.836);
+  filter: blur(5px);
+  animation: fall 1s linear infinite;
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100px); 
+    opacity: 0; 
+  }
+  to {
+    transform: translateY(100vh);
+    opacity: 1; 
+  }
+}
+
+@keyframes moveCloud {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.cloud {
+  animation: moveCloud 20s linear infinite;
+}
