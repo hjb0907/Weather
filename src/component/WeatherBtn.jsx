@@ -1,6 +1,6 @@
 import React from "react";
 
-const WeatherBtn = ({cities,setCity,setShowStars,setShowRain,setShowClouds,setShowSnows}) =>{
+const WeatherBtn = ({cities,setCity,setShowStars,setShowRain,setShowClouds,setShowSnows,setShowSun,setShowThunder}) =>{
 
   const handleCityClick = (city) => {
     setCity(city);
@@ -8,6 +8,8 @@ const WeatherBtn = ({cities,setCity,setShowStars,setShowRain,setShowClouds,setSh
     setShowSnows(() => false); 
     setShowRain(() => false); 
     setShowClouds(() => false); 
+    setShowSun(() => false); 
+    setShowThunder(() => false); 
   };
 
   return(

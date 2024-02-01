@@ -42,12 +42,16 @@ body {
   max-width: 2560px;
   min-width: 375px;
   padding:100px 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .searchlocation{
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 .searchlocation>input{
@@ -74,6 +78,8 @@ body {
   padding: 50px 0;
   box-sizing: border-box;
   color: #111;
+  position: relative;
+  z-index: 2;
 }
 
 .weatherinfo h2{
@@ -95,6 +101,8 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  position: relative;
+  z-index: 2;
 }
 
 .weatherbtn .btn{
@@ -178,4 +186,21 @@ body {
 
 .cloud {
   animation: moveCloud 20s linear infinite;
+  z-index: 1;
+}
+
+.time .sun{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 10%;
+  left: 78%;
+  z-index: 10;
+}
+
+.time .sun>img{
+  width: 100%;
+}
+.time img{
+  width: 100%;
 }

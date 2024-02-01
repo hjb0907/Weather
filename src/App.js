@@ -11,7 +11,9 @@ function App() {
   const [showStars, setShowStars] = useState(false);
   const [showSnows, setShowSnows] = useState(false);
   const [showRain, setShowRain] = useState(false);
+  const [showThunder, setShowThunder] = useState(false);
   const [showClouds, setShowClouds] = useState(false);
+  const [showSun, setShowSun] = useState(false);
 
   const cities=['Jeju','Busan','Seoul','Tokyo','New York','London','Paris'];
 
@@ -81,8 +83,8 @@ function App() {
     <div className="App" style={appStyle(weather)}>
       <SearchLocation setCity={setCity} city={city}/>
       <WeatherInfo weather={weather}/>
-      <WeatherBtn cities={cities} setCity={setCity} setShowStars={setShowStars} setShowRain={setShowRain} setShowClouds={setShowClouds} setShowSnows={setShowSnows}/>
-      <Time weather={weather} showStars={showStars} setShowStars={setShowStars} showRain={showRain} setShowRain={setShowRain} showClouds={showClouds} setShowClouds={setShowClouds} showSnows={showSnows} setShowSnows={setShowSnows}/>
+      <WeatherBtn cities={cities} setCity={setCity} setShowStars={setShowStars} setShowRain={setShowRain} setShowClouds={setShowClouds} setShowSnows={setShowSnows} showThunder={showThunder} setShowThunder={setShowThunder} showSun={showSun} setShowSun={setShowSun} />
+      <Time weather={weather} showStars={showStars} setShowStars={setShowStars} showRain={showRain} setShowRain={setShowRain} showClouds={showClouds} setShowClouds={setShowClouds} showSnows={showSnows} setShowSnows={setShowSnows} showSun={showSun} setShowSun={setShowSun} showThunder={showThunder} setShowThunder={setShowThunder}/>
     </div>
   );
 }

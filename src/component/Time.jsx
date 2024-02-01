@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useInterval } from 'react-use';
 import moment from 'moment';
 import 'moment/locale/ko';
+import thunderimg from '../img/thunder.png';
+import sunimg from '../img/sun.png';
 
 class Star {
   constructor(x = 0, y = 0, size = 0, time = 0) {
@@ -27,12 +29,13 @@ class Star {
     starDiv.style.height = this.size + 'px';
     starDiv.style.backgroundColor = '#ffe658';
     starDiv.style.filter = 'blur(2px)';
-    starDiv.style.borderRadius ='50%';
+    starDiv.style.borderRadius = '50%';
     starDiv.style.animation = `blink ${this.time}s steps(5) infinite`;
 
     document.body.appendChild(starDiv);
   }
 }
+
 class Snow {
   constructor(x = 0, y = 0, size = 0, time = 0) {
     this.x = x;
@@ -57,8 +60,8 @@ class Snow {
     snowDiv.style.height = this.size + 'px';
     snowDiv.style.backgroundColor = '#8eb2d087';
     snowDiv.style.filter = 'blur(5px)';
-    snowDiv.style.borderRadius ='50%';
-    snowDiv.style.animation = `blink ${this.time}s steps(5) infinite`;
+    snowDiv.style.borderRadius = '50%';
+    snowDiv.style.animation = `fall ${this.time}s steps(5) infinite`;
 
     document.body.appendChild(snowDiv);
   }
@@ -104,8 +107,8 @@ class Cloud {
   set() {
     this.x = Math.random() * window.innerWidth;
     this.y = Math.random() * window.innerHeight * 0.5;
-    this.size = Math.random() * 100 + 50; 
-    this.speed = Math.random() * 20 + 10; 
+    this.size = Math.random() * 100 + 50;
+    this.speed = Math.random() * 20 + 10;
 
     const cloudDiv = document.createElement('div');
     cloudDiv.className = 'cloud';
@@ -114,17 +117,32 @@ class Cloud {
     cloudDiv.style.left = this.x + 'px';
     cloudDiv.style.top = this.y + 'px';
     cloudDiv.style.width = this.size + 'px';
-    cloudDiv.style.height = this.size * 0.6 + 'px'; 
-    cloudDiv.style.backgroundColor = 'rgba(255,255,255,0.5)'; 
-    cloudDiv.style.borderRadius = '50%'; 
+    cloudDiv.style.height = this.size * 0.6 + 'px';
+    cloudDiv.style.backgroundColor = 'rgba(255,255,255,0.5)';
+    cloudDiv.style.borderRadius = '50%';
     cloudDiv.style.filter = 'blur(5px)';
+    cloudDiv.style.zIndex = 0;
     cloudDiv.style.animation = `moveCloud ${this.speed}s linear infinite`;
 
     document.body.appendChild(cloudDiv);
   }
 }
 
-const Time = ({ weather,showStars,showSnows,setShowSnows, setShowStars,showRain,setShowRain,showClouds,setShowClouds }) => {
+const Time = ({
+  weather,
+  showStars,
+  showSnows,
+  setShowSnows,
+  setShowStars,
+  showRain,
+  setShowRain,
+  showClouds,
+  setShowClouds,
+  showSun,
+  setShowSun,
+  showThunder,
+  setShowThunder,
+}) => {
   const [seconds, setSeconds] = useState(moment().format('HH:mm:ss'));
 
   useInterval(() => {
@@ -134,34 +152,53 @@ const Time = ({ weather,showStars,showSnows,setShowSnows, setShowStars,showRain,
   useEffect(() => {
     const intervalId = setInterval(() => {
       const currentTime = moment().format('HH:mm:ss');
-      if (currentTime >= '20:00:00' ) {
+      if (currentTime >= '20:00:00') {
         setShowStars(true);
         setShowSnows(false);
         setShowRain(false);
         setShowClouds(false);
+        setShowSun(false);
+        setShowThunder(false);
         clearInterval(intervalId);
-      }else if((weather.weather[0]?.id.toString()[0] === '6')){
-        setShowStars(false);
-        setShowSnows(true);
-        setShowRain(false);
-        setShowClouds(false);
-        clearInterval(intervalId);
-      }else if((weather.weather[0]?.id.toString()[0] === '5')){
+      } else if (weather.weather[0]?.id.toString()[0] === '2') {
         setShowStars(false);
         setShowSnows(false);
         setShowRain(true);
         setShowClouds(false);
+        setShowSun(false);
+        setShowThunder(true);
         clearInterval(intervalId);
-      }else if((weather.weather[0]?.id === 800)){
+      } else if (weather.weather[0]?.id.toString()[0] === '6') {
+        setShowStars(false);
+        setShowSnows(true);
+        setShowRain(false);
+        setShowClouds(false);
+        setShowSun(false);
+        setShowThunder(false);
+        clearInterval(intervalId);
+      } else if (weather.weather[0]?.id.toString()[0] === '5') {
+        setShowStars(false);
+        setShowSnows(false);
+        setShowRain(true);
+        setShowClouds(false);
+        setShowSun(false);
+        setShowThunder(false);
+        clearInterval(intervalId);
+      } else if (weather.weather[0]?.id === 800) {
         setShowStars(false);
         setShowSnows(false);
         setShowRain(false);
         setShowClouds(false);
-      }else if((weather.weather[0]?.id.toString()[0] === '8')){
+        setShowSun(true);
+        setShowThunder(false);
+        clearInterval(intervalId);
+      } else if (weather.weather[0]?.id.toString()[0] === '8') {
         setShowStars(false);
         setShowSnows(false);
         setShowRain(false);
         setShowClouds(true);
+        setShowSun(false);
+        setShowThunder(false);
         clearInterval(intervalId);
       }
     }, 1000);
@@ -175,9 +212,9 @@ const Time = ({ weather,showStars,showSnows,setShowSnows, setShowStars,showRain,
         const newStar = new Star();
         newStar.set();
       }
-    }else {
+    } else {
       const stars = document.querySelectorAll('.star');
-      stars.forEach(star => star.remove());
+      stars.forEach((star) => star.remove());
     }
   }, [showStars]);
 
@@ -187,9 +224,9 @@ const Time = ({ weather,showStars,showSnows,setShowSnows, setShowStars,showRain,
         const newSnow = new Snow();
         newSnow.set();
       }
-    }else {
+    } else {
       const snows = document.querySelectorAll('.snow');
-      snows.forEach(snow => snow.remove());
+      snows.forEach((snow) => snow.remove());
     }
   }, [showSnows]);
 
@@ -199,9 +236,9 @@ const Time = ({ weather,showStars,showSnows,setShowSnows, setShowStars,showRain,
         const newRaindrop = new Raindrop();
         newRaindrop.set();
       }
-    }else {
+    } else {
       const raindrops = document.querySelectorAll('.raindrop');
-      raindrops.forEach(raindrop => raindrop.remove());
+      raindrops.forEach((raindrop) => raindrop.remove());
     }
   }, [showRain]);
 
@@ -213,18 +250,48 @@ const Time = ({ weather,showStars,showSnows,setShowSnows, setShowStars,showRain,
       }
     } else {
       const clouds = document.querySelectorAll('.cloud');
-      clouds.forEach(cloud => cloud.remove());
+      clouds.forEach((cloud) => cloud.remove());
     }
   }, [showClouds]);
 
+  useEffect(() => {
+    const thunderInterval = setInterval(() => {
+      if (showThunder) {
+        const numberOfThunders = 3;
+  
+        const container = document.getElementById('time');
+        
+        container.innerHTML = '';
+  
+        for (let i = 0; i < numberOfThunders; i++) {
+          const thunderElement = document.createElement('img');
+          thunderElement.src = thunderimg;
+          thunderElement.alt = 'thunder';
+          thunderElement.style.position = 'absolute';
+          thunderElement.style.left = Math.random() * window.innerWidth + 'px';
+          thunderElement.style.top = Math.random() * window.innerHeight + 'px';
+          thunderElement.style.display = 'block';
+          
+          container.appendChild(thunderElement);
+        }
+      }
+    }, 2000);
+  
+    return () => clearInterval(thunderInterval);
+  }, [showThunder]);
+  
+
+  
   return (
-    <div className="time" id='time'>
+    <div className="time" id="time">
       {showStars && <div className="star"></div>}
       {showSnows && <div className="snow"></div>}
       {showRain && <div className="raindrop"></div>}
       {showClouds && <div className="cloud"></div>}
+      {showSun && <div className="sun"><img src={sunimg} alt="sun" /></div>}
+      {showThunder && <img id="thunder" src={thunderimg} alt="thunder"/>}
     </div>
   );
-}
+};
 
 export default Time;
