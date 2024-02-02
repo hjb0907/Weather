@@ -12,12 +12,16 @@ const WeatherBtn = ({cities,setCity,setShowStars,setShowRain,setShowClouds,setSh
     setShowThunder(() => false); 
   };
 
+  const handledelete = (_this) =>{
+
+  }
+
   return(
     <div className="weatherbtn">
       <div className="btn"><button onClick={()=>setCity('')}>현재위치</button></div>
       {
         cities.map((e, index) => (
-          <div className="btn" key={index}><button onClick={() => handleCityClick(e)}>{e}</button></div>
+          <div className="btn" key={index}><button onClick={() => handleCityClick(e)}>{e} <span onClick={()=>handledelete('_this')}>&#10007;</span></button></div>
         ))
       }
     </div>

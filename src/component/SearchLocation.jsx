@@ -1,7 +1,6 @@
 import React, { useState,useRef  } from "react";
 
-const SearchLocation = ({setCity,city}) => {
-  const [search,setSearch]=useState('');
+const SearchLocation = ({setCity,city,search,setSearch}) => {
 
   const InputFocus = useRef();
 

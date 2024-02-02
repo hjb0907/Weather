@@ -8,14 +8,14 @@ import Time from './component/Time';
 function App() {
   const [weather, setWeather] = useState(null); 
   const [city, setCity] = useState('');
+  const [search,setSearch]=useState('');
   const [showStars, setShowStars] = useState(false);
   const [showSnows, setShowSnows] = useState(false);
   const [showRain, setShowRain] = useState(false);
   const [showThunder, setShowThunder] = useState(false);
   const [showClouds, setShowClouds] = useState(false);
   const [showSun, setShowSun] = useState(false);
-
-  const cities=['Jeju','Busan','Seoul','Tokyo','New York','London','Paris'];
+  const [cities,setCities] = useState(['Jeju','Busan','Seoul','Tokyo','New York','London','Paris']);
 
   const currentLocation = ()=>{
     navigator.geolocation.getCurrentPosition((position)=>{
@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div className="App" style={appStyle(weather)}>
-      <SearchLocation setCity={setCity} city={city}/>
+      <SearchLocation setCity={setCity} city={city} search={search} setSearch={setSearch} />
       <WeatherInfo weather={weather}/>
       <WeatherBtn cities={cities} setCity={setCity} setShowStars={setShowStars} setShowRain={setShowRain} setShowClouds={setShowClouds} setShowSnows={setShowSnows} showThunder={showThunder} setShowThunder={setShowThunder} showSun={showSun} setShowSun={setShowSun} />
       <Time weather={weather} showStars={showStars} setShowStars={setShowStars} showRain={showRain} setShowRain={setShowRain} showClouds={showClouds} setShowClouds={setShowClouds} showSnows={showSnows} setShowSnows={setShowSnows} showSun={showSun} setShowSun={setShowSun} showThunder={showThunder} setShowThunder={setShowThunder}/>
