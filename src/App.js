@@ -68,7 +68,7 @@ function App() {
       return {
         background: `linear-gradient(180deg, rgba(2,121,200,1) 0%, rgba(65,145,216,1) 35%, rgba(117,177,232,1) 100%)`,
       };
-    }else if (weather && weather.weather && weather.weather.length > 0 && weather.weather[0].id.toString()[0] === '8') {
+    }else if (weather && weather.weather && weather.weather.length > 0 && weather.weather[0].id.toString()[0] === '7' || weather && weather.weather && weather.weather.length > 0 && weather.weather[0].id.toString()[0] === '8'|| weather && weather.weather && weather.weather.length > 0 && weather.weather[0].id.toString()[0] === '9') {
       return {
         background: `linear-gradient(0deg, rgba(207,214,225,1) 0%, rgba(116,155,168,1) 100%)`,
       };

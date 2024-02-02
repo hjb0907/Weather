@@ -204,3 +204,11 @@ body {
 .time img{
   width: 100%;
 }
+
+#thunder{animation: fadeIn 5s;}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  40%{opacity: 1;}
+  100% { opacity: 1; }
+}

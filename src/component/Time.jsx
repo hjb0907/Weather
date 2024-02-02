@@ -244,7 +244,7 @@ const Time = ({
 
   useEffect(() => {
     if (showClouds) {
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 5; i++) {
         const newCloud = new Cloud();
         newCloud.set();
       }
@@ -271,6 +271,8 @@ const Time = ({
           thunderElement.style.left = Math.random() * window.innerWidth + 'px';
           thunderElement.style.top = Math.random() * window.innerHeight + 'px';
           thunderElement.style.display = 'block';
+          thunderElement.style.width = '150px';
+          thunderElement.style.animation = `fadeIn 5s linear infinite`;
           
           container.appendChild(thunderElement);
         }
