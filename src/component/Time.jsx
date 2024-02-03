@@ -4,68 +4,9 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import thunderimg from '../img/thunder.png';
 import sunimg from '../img/sun.png';
+import Star from './Star';
+import Snow from './Snow';
 
-class Star {
-  constructor(x = 0, y = 0, size = 0, time = 0) {
-    this.x = x;
-    this.y = y;
-    this.size = size;
-    this.time = time;
-  }
-
-  set() {
-    this.x = Math.random() * window.innerWidth;
-    this.y = Math.random() * window.innerHeight;
-    this.size = Math.random() * 12;
-    this.time = Math.random() * 8;
-
-    const starDiv = document.createElement('div');
-    starDiv.className = 'star';
-
-    starDiv.style.position = 'absolute';
-    starDiv.style.left = this.x + 'px';
-    starDiv.style.top = this.y + 'px';
-    starDiv.style.width = this.size + 'px';
-    starDiv.style.height = this.size + 'px';
-    starDiv.style.backgroundColor = '#ffe658';
-    starDiv.style.filter = 'blur(2px)';
-    starDiv.style.borderRadius = '50%';
-    starDiv.style.animation = `blink ${this.time}s steps(5) infinite`;
-
-    document.body.appendChild(starDiv);
-  }
-}
-
-class Snow {
-  constructor(x = 0, y = 0, size = 0, time = 0) {
-    this.x = x;
-    this.y = y;
-    this.size = size;
-    this.time = time;
-  }
-
-  set() {
-    this.x = Math.random() * window.innerWidth;
-    this.y = Math.random() * window.innerHeight;
-    this.size = Math.random() * 12;
-    this.time = Math.random() * 8;
-
-    const snowDiv = document.createElement('div');
-    snowDiv.className = 'snow';
-
-    snowDiv.style.position = 'absolute';
-    snowDiv.style.left = this.x + 'px';
-    snowDiv.style.top = this.y + 'px';
-    snowDiv.style.width = this.size + 'px';
-    snowDiv.style.height = this.size + 'px';
-    snowDiv.style.backgroundColor = '#8eb2d087';
-    snowDiv.style.filter = 'blur(5px)';
-    snowDiv.style.borderRadius = '50%';
-    snowDiv.style.animation = `fall ${this.time}s steps(5) infinite`;
-
-    document.body.appendChild(snowDiv);
-  }
-}
 
 class Raindrop {
   constructor(x = 0, y = 0, length = 0, speed = 0) {
@@ -160,7 +101,7 @@ const Time = ({
         setShowSun(false);
         setShowThunder(false);
         clearInterval(intervalId);
-      } else if (weather.weather[0]?.id.toString()[0] === '2') {
+      } else if (weather.weather[0]?.id && weather.weather[0].id.toString()[0] === '2') {
         setShowStars(false);
         setShowSnows(false);
         setShowRain(true);
@@ -168,18 +109,18 @@ const Time = ({
         setShowSun(false);
         setShowThunder(true);
         clearInterval(intervalId);
-      } else if (weather.weather[0]?.id.toString()[0] === '6') {
+      } else if (weather.weather[0]?.id && weather.weather[0].id.toString()[0] === '5') {
         setShowStars(false);
-        setShowSnows(true);
-        setShowRain(false);
+        setShowSnows(false);
+        setShowRain(true);
         setShowClouds(false);
         setShowSun(false);
         setShowThunder(false);
         clearInterval(intervalId);
-      } else if (weather.weather[0]?.id.toString()[0] === '5') {
+      } else if (weather.weather[0]?.id && weather.weather[0].id.toString()[0] === '6') {
         setShowStars(false);
-        setShowSnows(false);
-        setShowRain(true);
+        setShowSnows(true);
+        setShowRain(false);
         setShowClouds(false);
         setShowSun(false);
         setShowThunder(false);
@@ -192,7 +133,7 @@ const Time = ({
         setShowSun(true);
         setShowThunder(false);
         clearInterval(intervalId);
-      } else if (weather.weather[0]?.id.toString()[0] === '8') {
+      } else if (weather.weather[0]?.id && weather.weather[0].id.toString()[0] === '8') {
         setShowStars(false);
         setShowSnows(false);
         setShowRain(false);

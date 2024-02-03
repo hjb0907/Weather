@@ -4,6 +4,7 @@ import SearchLocation from './component/SearchLocation';
 import WeatherInfo from './component/WeatherInfo';
 import WeatherBtn from './component/WeatherBtn';
 import Time from './component/Time';
+import FadeLoader from "react-spinners/FadeLoader";
 
 function App() {
   const [weather, setWeather] = useState(null); 
@@ -16,6 +17,8 @@ function App() {
   const [showClouds, setShowClouds] = useState(false);
   const [showSun, setShowSun] = useState(false);
   const [cities,setCities] = useState(['Jeju','Busan','Seoul','Tokyo','New York','London','Paris']);
+  let [loading, setLoading] = useState(false);
+
 
   const currentLocation = ()=>{
     navigator.geolocation.getCurrentPosition((position)=>{
@@ -28,9 +31,11 @@ function App() {
   };
 
   const weatherInfo = async(lat,lon)=> {
+    setLoading(true);
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=cf0ad41ef4e83f85c69d1f76668f7c61`;
     let response = await fetch(url);
     let data = await response.json();
+    setLoading(false);
     
     //이는 특히 비동기 작업을 처리할 때 React가 상태를 올바르게 업데이트하도록 보장합니다.
     setWeather(prevWeather => data);
@@ -81,10 +86,26 @@ function App() {
 
   return (
     <div className="App" style={appStyle(weather)}>
-      <SearchLocation setCity={setCity} city={city} search={search} setSearch={setSearch} />
-      <WeatherInfo weather={weather}/>
-      <WeatherBtn cities={cities} setCity={setCity} setShowStars={setShowStars} setShowRain={setShowRain} setShowClouds={setShowClouds} setShowSnows={setShowSnows} showThunder={showThunder} setShowThunder={setShowThunder} showSun={showSun} setShowSun={setShowSun} />
-      <Time weather={weather} showStars={showStars} setShowStars={setShowStars} showRain={showRain} setShowRain={setShowRain} showClouds={showClouds} setShowClouds={setShowClouds} showSnows={showSnows} setShowSnows={setShowSnows} showSun={showSun} setShowSun={setShowSun} showThunder={showThunder} setShowThunder={setShowThunder}/>
+      {
+        loading ? (
+          <div className="loader">
+            <FadeLoader
+              color='#ddd'
+              size={150}
+              speedMultiplier= {1}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        ):(
+          <div>
+            <SearchLocation setCity={setCity} city={city} search={search} setSearch={setSearch} />
+            <WeatherInfo weather={weather}/>
+            <WeatherBtn cities={cities} setCities={setCities} setCity={setCity} setShowStars={setShowStars} setShowRain={setShowRain} setShowClouds={setShowClouds} setShowSnows={setShowSnows} showThunder={showThunder} setShowThunder={setShowThunder} showSun={showSun} setShowSun={setShowSun} />
+            <Time weather={weather} showStars={showStars} setShowStars={setShowStars} showRain={showRain} setShowRain={setShowRain} showClouds={showClouds} setShowClouds={setShowClouds} showSnows={showSnows} setShowSnows={setShowSnows} showSun={showSun} setShowSun={setShowSun} showThunder={showThunder} setShowThunder={setShowThunder}/>
+          </div>
+        )
+      }
     </div>
   );
 }
