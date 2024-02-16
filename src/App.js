@@ -99,7 +99,7 @@ function App() {
           </div>
         ):(
           <div>
-            <SearchLocation setCity={setCity} city={city} search={search} setSearch={setSearch} />
+            <SearchLocation setCity={setCity} city={city} cities={cities} setCities={setCities} search={search} setSearch={setSearch} />
             <WeatherInfo weather={weather}/>
             <WeatherBtn cities={cities} setCities={setCities} setCity={setCity} setShowStars={setShowStars} setShowRain={setShowRain} setShowClouds={setShowClouds} setShowSnows={setShowSnows} showThunder={showThunder} setShowThunder={setShowThunder} showSun={showSun} setShowSun={setShowSun} />
             <Time weather={weather} showStars={showStars} setShowStars={setShowStars} showRain={showRain} setShowRain={setShowRain} showClouds={showClouds} setShowClouds={setShowClouds} showSnows={showSnows} setShowSnows={setShowSnows} showSun={showSun} setShowSun={setShowSun} showThunder={showThunder} setShowThunder={setShowThunder}/>

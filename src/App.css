@@ -96,8 +96,10 @@ body {
 }
 
 .weatherbtn{
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
@@ -108,7 +110,10 @@ body {
 .weatherbtn .btn{
   width: calc(80%/8 - 5px);
   margin-right: 5px;
+  position: relative;
+  margin-bottom: 10px;
 }
+
 .weatherbtn button{
   width: 100%;
   border: none;
@@ -120,6 +125,19 @@ body {
   font-family: 'S-CoreDream-3Light';
   cursor: pointer;
   word-break: break-word;
+}
+
+.weatherbtn .delete_btn{
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+}
+
+.weatherbtn .delete_btn:hover{
+  color: rgba(243, 49, 31, 0.867);
+  font-weight: bold;
 }
 
 .time .star{

@@ -29,7 +29,7 @@ const WeatherBtn = ({cities,setCities,setCity,setShowStars,setShowRain,setShowCl
         cities.map((e, index) => (
           <div className="btn" key={index} id={index}>
             <button onClick={() => handleCityClick(e)}>{e} </button>
-            <span onClick={handleDelete}>&#10007;</span>
+            <span className="delete_btn" onClick={handleDelete}>&#10005;</span>
           </div>
         ))
       }
