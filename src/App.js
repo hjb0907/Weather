@@ -42,9 +42,13 @@ function App() {
   }
 
   const weatherCity = async() =>{
+    setLoading(true);
+
     let url= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=cf0ad41ef4e83f85c69d1f76668f7c61&units=metric`;
     let response = await fetch(url);
     let data = await response.json();
+    setLoading(false);
+
     setWeather(data);
   }
 
