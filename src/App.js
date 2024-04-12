@@ -73,7 +73,7 @@ function App() {
       return {
         background: `linear-gradient(0deg, rgba(207,214,225,1) 0%, rgba(230,249,255,1) 100%)`,
       };
-    } else if (weather && weather.weather && weather.weather[0].id === 800) {
+    } else if (weather && weather.weather && weather.weather[0].id === 800 || weather && weather.weather && weather.weather[0].id === 803) {
       return {
         background: `linear-gradient(180deg, rgba(2,121,200,1) 0%, rgba(65,145,216,1) 35%, rgba(117,177,232,1) 100%)`,
       };

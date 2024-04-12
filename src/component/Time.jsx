@@ -133,7 +133,15 @@ const Time = ({
         setShowSun(true);
         setShowThunder(false);
         clearInterval(intervalId);
-      } else if (weather.weather[0]?.id && weather.weather[0].id.toString()[0] === '8') {
+      } else if (weather.weather[0]?.id === 803) {
+        setShowStars(false);
+        setShowSnows(false);
+        setShowRain(false);
+        setShowClouds(false);
+        setShowSun(false);
+        setShowThunder(false);
+        clearInterval(intervalId);
+      }else if (weather.weather[0]?.id && weather.weather[0].id.toString()[0] === '8') {
         setShowStars(false);
         setShowSnows(false);
         setShowRain(false);
