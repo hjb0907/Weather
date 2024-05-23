@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import weatherDescKo from "./weatherDescKo";
 
 const WeatherInfo = ({weather})=>{
-  console.log(weather);
-  
   const [isTranslated, setIsTranslated] = useState(false);
 
   const translateWeatherDescription = (id) => {
